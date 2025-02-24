@@ -1,21 +1,22 @@
 # 簡介
-由於發現部分台股櫃買資訊無法在 GOOGLEFINANCE 獲取因此想改善此問題
-YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表使用者從 Yahoo Finance 直接抓取台股、國際股市的即時價格與漲跌幅數據。
-
-本腳本適用於 Google Sheets，無須額外安裝套件，只需將程式碼貼入 Apps Script 編輯器 即可開始使用。
-
+由於發現部分台股櫃買資訊無法在 GOOGLEFINANCE 獲取因此想改善此問題<br/>
+<br/>
+YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表使用者從 Yahoo Finance 直接抓取台股、國際股市的即時價格與漲跌幅數據<br/>
+<br/>
+本腳本適用於 Google Sheets，無須額外安裝套件，只需將程式碼貼入 Apps Script 編輯器 即可開始使用<br/>
+<br/>
 # 安裝步驟
-##✅ 方法 1：手動安裝
-開啟 Google 試算表
-點擊 `擴充功能 (Extensions)` → `Apps Script`
-刪除預設內容，貼上以下完整程式碼：script.gs
-按下 儲存 (⌘S / Ctrl+S)
-回到試算表，即可使用 `=YAHOOFINANCE("股票代號", "price")` 來獲取數據
-##✅ 方法 2：透過 Google Apps Script API
-前往 Google Apps Script 網頁版：Google Apps Script
-建立新專案，然後貼上完整程式碼
-部署專案，將其綁定至你的 Google 試算表
-
+##✅ 方法 1：手動安裝<br/>
+開啟 Google 試算表<br/>
+點擊 `擴充功能 (Extensions)` → `Apps Script`<br/>
+刪除預設內容，貼上以下完整程式碼：script.gs<br/>
+按下 儲存 (⌘S / Ctrl+S)<br/>
+回到試算表，即可使用 `=YAHOOFINANCE("股票代號", "price")` 來獲取數據<br/>
+##✅ 方法 2：透過 Google Apps Script API<br/>
+前往 Google Apps Script 網頁版：Google Apps Script<br/>
+建立新專案，然後貼上完整程式碼<br/>
+部署專案，將其綁定至你的 Google 試算表<br/>
+<br/>
 # 如何使用
 在 Google 試算表中，你可以使用以下自訂函數：
 
