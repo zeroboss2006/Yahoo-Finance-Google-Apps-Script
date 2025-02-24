@@ -19,13 +19,20 @@ YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表
 # 如何使用
 在 Google 試算表中，你可以使用以下自訂函數：
 
-#📌 支援的參數
-參數	說明	範例
-symbol	Yahoo Finance 股票代號	"2330.TW" "AAPL"
-attribute	"price" 取得現價
-"changepct" 取得當日漲跌幅	"price" "changepct"
+# 支援的參數
+		
+``	
+	
+``	
+"" 
+"changepct" 	"price" ""
 
-#🛠️ 內建函數
+| 參數 | 說明 | 範例 |
+|-------|-------|-------|
+| `symbol` | Yahoo Finance 股票代號 | `"2330.TW"` `"AAPL"` |
+| `attribute` | `price`取得現價\ `changepct`取得當日漲跌幅 | 內容F |
+
+# 擴增函數
 🔹 YAHOOFINANCE(symbol, attribute)
 功能：從 Yahoo Finance 獲取指定股票的即時價格或漲跌幅
 
