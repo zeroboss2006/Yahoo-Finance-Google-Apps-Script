@@ -67,6 +67,6 @@ Yahoo Finance 可能變更網頁結構，如果無法抓取數據，請更新正
 📌 支援更多數據屬性（如開盤價、成交量等）<br/>
 📌 加入其他財經數據來源（如 MoneyDJ、台灣證券交易所等）<br/>
 📌 優化請求速度，減少 API 限制影響<br/>
-🔗 GitHub Repo (如果有的話)<br/>
+🔗 GitHub (https://github.com/zeroboss2006/YAHOOFINANCE-Google-Apps-Script/tree/main)<br/>
 
 
