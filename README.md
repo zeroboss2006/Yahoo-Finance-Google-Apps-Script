@@ -39,7 +39,7 @@ YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表
 | =YAHOOFINANCE("AAPL", "price") | Apple 股價 |
 | =YAHOOFINANCE("GOOGL", "changepct") | Google 當日漲跌幅 (%) |
 <br/>
-# 使用方式：
+# 使用方式
 打開 Apps Script 編輯器<br/>
 點擊 執行 (Run)<br/>
 會將價格與漲跌幅寫入 A1 和 B1 儲存格<br/>
