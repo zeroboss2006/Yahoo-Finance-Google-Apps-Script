@@ -1,68 +1,72 @@
-# Introduction
-Due to the limitation of GOOGLEFINANCE in retrieving certain Taiwan OTC stock information, this project aims to address this issue.
+# 簡介
+由於發現部分台股櫃買資訊無法在 GOOGLEFINANCE 獲取因此想改善此問題<br/>
+<br/>
+YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表使用者從 Yahoo Finance 直接抓取台股、國際股市的即時價格與漲跌幅數據<br/>
+<br/>
+本腳本適用於 Google Sheets，無須額外安裝套件，只需將程式碼貼入 Apps Script 編輯器 即可開始使用<br/>
+<br/>
+# 安裝步驟
+#### 方法 1：手動安裝<br/>
+開啟 Google 試算表<br/>
+點擊 `擴充功能 (Extensions)` → `Apps Script`<br/>
+刪除預設內容，貼上以下完整程式碼：script.gs<br/>
+按下 儲存 (⌘S / Ctrl+S)<br/>
+回到試算表，即可使用 `=YAHOOFINANCE("股票代號", "price")` 來獲取數據<br/>
+#### 方法 2：透過 Google Apps Script API<br/>
+前往 Google Apps Script 網頁版：Google Apps Script<br/>
+建立新專案，然後貼上完整程式碼<br/>
+部署專案，將其綁定至你的 Google 試算表<br/>
+<br/>
+# 如何使用
+在 Google 試算表中，你可以使用以下自訂函數：<br/>
+<br/>
+# 支援的參數
+| 參數 | 說明 | 範例 |
+|-------|-------|-------|
+| `symbol` | Yahoo Finance 股票代號 | `"2330.TW"` `"AAPL"` |
+| `attribute` | `price`取得現價<br/> `changepct`取得當日漲跌幅 | `"changepct"` `"price"` |
+<br/>
 
-YAHOOFINANCE is a Google Apps Script custom function that allows Google Sheets users to fetch real-time stock prices and price change percentages from Yahoo Finance for both Taiwan and international markets.
+# 擴增函數
+`YAHOOFINANCE(symbol, attribute)`<br/>
+功能：從 Yahoo Finance 獲取指定股票的即時價格或漲跌幅<br/>
+<br/>
 
-This script is designed for Google Sheets and requires no additional package installation. Simply paste the code into the Apps Script editor to start using it.
+# 範例
 
-# Installation
-#### Method 1: Manual Installation
-1. Open Google Sheets
-2. Click `Extensions` → `Apps Script`
-3. Delete the default content and paste the complete code from script.gs
-4. Press Save (⌘S / Ctrl+S)
-5. Return to your spreadsheet and use `=YAHOOFINANCE("stock_symbol", "price")` to fetch data
+| 參數 | 說明 |
+|-------|-------|
+| `=YAHOOFINANCE("00864B.TWO", "price")` | 獲取 00864B.TWO 的即時價格 |
+| `=YAHOOFINANCE("2330.TW", "changepct")` | 獲取台積電 (2330.TW) 的當日漲跌幅 |
+| `=YAHOOFINANCE("AAPL", "price")` | Apple 股價 |
+| `=YAHOOFINANCE("GOOGL", "changepct")` | Google 當日漲跌幅 (%) |
+<br/>
 
-#### Method 2: Via Google Apps Script API
-1. Go to Google Apps Script web version
-2. Create a new project and paste the complete code
-3. Deploy the project and bind it to your Google Sheets
+## 使用方式
+打開 Apps Script 編輯器<br/>
+點擊 執行 (Run)<br/>
+會將價格與漲跌幅寫入 A1 和 B1 儲存格<br/>
+<br/>
 
-# Usage
-You can use the following custom functions in Google Sheets:
+## 版本更新
+v1.0 (2025-02-24)<br/>
+✅ 修正 changepct 漲跌幅數據錯誤，確保匹配 Yahoo Finance<br/>
+✅ 提供更準確的正則表達式以解析市價與漲跌幅<br/>
+✅ 加入錯誤處理機制，避免因為網路問題導致函數崩潰<br/>
 
-# Supported Parameters
-| Parameter | Description | Example |
-|-----------|-------------|----------|
-| `symbol` | Yahoo Finance stock symbol | `"2330.TW"` `"AAPL"` |
-| `attribute` | `price` for current price<br/> `changepct` for daily change percentage | `"changepct"` `"price"` |
+# 注意事項
+Yahoo Finance 可能變更網頁結構，如果無法抓取數據，請更新正則表達式<br/>
+每個 Google 試算表 API 呼叫數量有限，請避免過於頻繁地請求<br/>
+部分股票可能需要不同代號，例如：<br/>
+台灣上市股票：2330.TW (台積電)<br/>
+台灣上櫃股票：00864B.TWO<br/>
+美國股票：AAPL<br/>
+指數：^IXIC (NASDAQ)<br/>
 
-# Function
-`YAHOOFINANCE(symbol, attribute)`
-Purpose: Fetch real-time price or price change percentage from Yahoo Finance
-
-# Examples
-| Usage | Description |
-|-------|-------------|
-| `=YAHOOFINANCE("00864B.TWO", "price")` | Get real-time price for 00864B.TWO |
-| `=YAHOOFINANCE("2330.TW", "changepct")` | Get daily change percentage for TSMC (2330.TW) |
-| `=YAHOOFINANCE("AAPL", "price")` | Get Apple stock price |
-| `=YAHOOFINANCE("GOOGL", "changepct")` | Get Google daily change percentage (%) |
-
-## Implementation
-1. Open Apps Script editor
-2. Click Run
-3. Price and change percentage will be written to cells A1 and B1
-
-## Version History
-v1.0 (2025-02-24)
-✅ Fixed changepct data accuracy to match Yahoo Finance
-✅ Improved regex patterns for price and change percentage parsing
-✅ Added error handling to prevent function crashes due to network issues
-
-# Notes
-- Yahoo Finance may change their webpage structure; update regex patterns if data fetching fails
-- Google Sheets API has rate limits; avoid excessive requests
-- Different markets use different symbol formats:
-  - Taiwan Listed Stocks: 2330.TW (TSMC)
-  - Taiwan OTC Stocks: 00864B.TWO
-  - US Stocks: AAPL
-  - Indices: ^IXIC (NASDAQ)
-
-# Future Improvements
-📌 Support for additional data attributes (open price, volume, etc.)
-📌 Integration with other financial data sources (MoneyDJ, TWSE, etc.)
-📌 Optimize request speed to minimize API limitation impacts
-🔗 GitHub (https://github.com/zeroboss2006/YAHOOFINANCE-Google-Apps-Script/tree/main)
+# 未來改進方向
+📌 支援更多數據屬性（如開盤價、成交量等）<br/>
+📌 加入其他財經數據來源（如 MoneyDJ、台灣證券交易所等）<br/>
+📌 優化請求速度，減少 API 限制影響<br/>
+🔗 GitHub (https://github.com/zeroboss2006/YAHOOFINANCE-Google-Apps-Script/tree/main)<br/>
 
 
