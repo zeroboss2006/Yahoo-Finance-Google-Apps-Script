@@ -69,5 +69,4 @@ Yahoo Finance 可能變更網頁結構，如果無法抓取數據，請更新正
 📌 優化請求速度，減少 API 限制影響<br/>
 🔗 GitHub Repo (如果有的話)<br/>
 
-希望這個 README 對你發行 YAHOOFINANCE Google Apps Script 有幫助！<br/>
-如果有其他修改需求或想加入更多說明，歡迎告訴我 😊🚀<br/>
+
