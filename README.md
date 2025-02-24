@@ -1,4 +1,3 @@
-📌 YAHOOFINANCE Google Apps Script
 🚀 簡介
 由於發現部分台股櫃買資訊無法在 GOOGLEFINANCE 獲取因此想改善此問題
 YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表使用者從 Yahoo Finance 直接抓取台股、國際股市的即時價格與漲跌幅數據。
