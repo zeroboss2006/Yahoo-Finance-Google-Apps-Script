@@ -17,7 +17,7 @@ YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表
 建立新專案，然後貼上完整程式碼<br/>
 部署專案，將其綁定至你的 Google 試算表<br/>
 <br/>
-# 如何使用<br/>
+# 如何使用
 在 Google 試算表中，你可以使用以下自訂函數：<br/>
 <br/>
 # 支援的參數
