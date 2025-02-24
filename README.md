@@ -7,10 +7,10 @@ YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表
 # 安裝步驟
 ##✅ 方法 1：手動安裝
 開啟 Google 試算表
-點擊 擴充功能 (Extensions) → Apps Script
+點擊 `擴充功能 (Extensions)` → `Apps Script`
 刪除預設內容，貼上以下完整程式碼：script.gs
 按下 儲存 (⌘S / Ctrl+S)
-回到試算表，即可使用 =YAHOOFINANCE("股票代號", "price") 來獲取數據
+回到試算表，即可使用 `=YAHOOFINANCE("股票代號", "price")` 來獲取數據
 ##✅ 方法 2：透過 Google Apps Script API
 前往 Google Apps Script 網頁版：Google Apps Script
 建立新專案，然後貼上完整程式碼
@@ -20,28 +20,21 @@ YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表
 在 Google 試算表中，你可以使用以下自訂函數：
 
 # 支援的參數
-		
-``	
-	
-``	
-"" 
-"changepct" 	"price" ""
-
 | 參數 | 說明 | 範例 |
 |-------|-------|-------|
 | `symbol` | Yahoo Finance 股票代號 | `"2330.TW"` `"AAPL"` |
-| `attribute` | `price`取得現價\ `changepct`取得當日漲跌幅 | 內容F |
+| `attribute` | `price`取得現價<br/> `changepct`取得當日漲跌幅 | `"changepct"` `"price"` |
 
 # 擴增函數
-🔹 YAHOOFINANCE(symbol, attribute)
+🔹 `YAHOOFINANCE(symbol, attribute)`
 功能：從 Yahoo Finance 獲取指定股票的即時價格或漲跌幅
 
 #範例：
 
-=YAHOOFINANCE("00864B.TWO", "price")      // 獲取 00864B.TWO 的即時價格
+`=YAHOOFINANCE("00864B.TWO", "price")      // 獲取 00864B.TWO 的即時價格
 =YAHOOFINANCE("2330.TW", "changepct")     // 獲取台積電 (2330.TW) 的當日漲跌幅
 =YAHOOFINANCE("AAPL", "price")        // Apple 股價
-=YAHOOFINANCE("GOOGL", "changepct")   // Google 當日漲跌幅 (%)
+=YAHOOFINANCE("GOOGL", "changepct")   // Google 當日漲跌幅 (%)`
 
 #使用方式：
 打開 Apps Script 編輯器
