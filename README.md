@@ -27,7 +27,7 @@ YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表
 | `attribute` | `price`取得現價<br/> `changepct`取得當日漲跌幅 | `"changepct"` `"price"` |
 <br/>
 # 擴增函數
-🔹 `YAHOOFINANCE(symbol, attribute)`
+`YAHOOFINANCE(symbol, attribute)`<br/>
 功能：從 Yahoo Finance 獲取指定股票的即時價格或漲跌幅<br/>
 <br/>
 
@@ -40,12 +40,14 @@ YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表
 | `=YAHOOFINANCE("AAPL", "price")` | Apple 股價 |
 | `=YAHOOFINANCE("GOOGL", "changepct")` | Google 當日漲跌幅 (%) |
 <br/>
-# 使用方式
+
+## 使用方式
 打開 Apps Script 編輯器<br/>
 點擊 執行 (Run)<br/>
 會將價格與漲跌幅寫入 A1 和 B1 儲存格<br/>
 <br/>
-# 版本更新
+
+## 版本更新
 v1.0 (2025-02-24)<br/>
 ✅ 修正 changepct 漲跌幅數據錯誤，確保匹配 Yahoo Finance<br/>
 ✅ 提供更準確的正則表達式以解析市價與漲跌幅<br/>
