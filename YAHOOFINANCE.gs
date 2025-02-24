@@ -72,4 +72,8 @@ function writeDataToSheet() {
   if (changePct !== "無法抓取漲跌幅" && changePct !== "無效屬性") {
     sheet.getRange("B1").setValue(changePct);
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> cee783f6cc3d61b453572e35d6fd85f1a8b703fa
