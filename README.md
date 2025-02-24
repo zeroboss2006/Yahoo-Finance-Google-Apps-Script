@@ -26,6 +26,7 @@ YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表
 | `symbol` | Yahoo Finance 股票代號 | `"2330.TW"` `"AAPL"` |
 | `attribute` | `price`取得現價<br/> `changepct`取得當日漲跌幅 | `"changepct"` `"price"` |
 <br/>
+
 # 擴增函數
 `YAHOOFINANCE(symbol, attribute)`<br/>
 功能：從 Yahoo Finance 獲取指定股票的即時價格或漲跌幅<br/>
