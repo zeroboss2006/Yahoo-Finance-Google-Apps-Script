@@ -30,13 +30,12 @@ YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表
 功能：從 Yahoo Finance 獲取指定股票的即時價格或漲跌幅
 
 # 範例
-> 獲取 00864B.TWO 的即時價格
-```
-=YAHOOFINANCE("00864B.TWO", "price")      // 
-=YAHOOFINANCE("2330.TW", "changepct")     // 獲取台積電 (2330.TW) 的當日漲跌幅
-=YAHOOFINANCE("AAPL", "price")      // Apple 股價
-=YAHOOFINANCE("GOOGL", "changepct")   // Google 當日漲跌幅 (%)
-```
+| 參數 | 說明 |
+|-------|-------|
+| =YAHOOFINANCE("00864B.TWO", "price") |獲取 00864B.TWO 的即時價格 |
+| =YAHOOFINANCE("2330.TW", "changepct") |獲取台積電 (2330.TW) 的當日漲跌幅 |
+| =YAHOOFINANCE("AAPL", "price") | Apple 股價 |
+| =YAHOOFINANCE("GOOGL", "changepct") | Google 當日漲跌幅 (%) |
 
 # 使用方式：
 打開 Apps Script 編輯器
