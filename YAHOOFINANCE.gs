@@ -25,21 +25,14 @@ function YAHOOFINANCE(symbol, attribute) {
     var html = response.getContentText();
     
     if (attribute.toLowerCase() === "price") {
-      // 嘗試解析現價（regularMarketPrice）
-      var pricePattern = new RegExp('<fin-streamer[^>]*data-symbol="' + symbol + '"[^>]*data-field="regularMarketPrice"[^>]*>([\\d\\.]+)<\\/fin-streamer>', 'i');
+      // 使用更精確的正則表達式匹配價格
+      var pricePattern = /<[^>]*data-testid="qsp-price"[^>]*>([^<]*)<\/span>/i;
       var match = html.match(pricePattern);
       
       if (match && match[1]) {
-        return parseFloat(match[1]); // 返回現價
+        return parseFloat(match[1].replace(/[^\d.]/g, '')); // 只保留數字和小數點
       } else {
-        // 若現價未找到，抓取 Bid 價格
-        var bidPattern = /Bid<\/span>\s*<span class="value yf-1d5fln4">([\d\.]+)\s*x/i;
-        match = html.match(bidPattern);
-        if (match && match[1]) {
-          return parseFloat(match[1]); // 返回 Bid 價格
-        } else {
-          return "無法抓取價格";
-        }
+        return "無法抓取價格";
       }
     } else if (attribute.toLowerCase() === "changepct") {
       // 精準解析百分比變化（匹配帶括號的百分比）
