@@ -26,11 +26,11 @@ function YAHOOFINANCE(symbol, attribute) {
     
     if (attribute.toLowerCase() === "price") {
       // 使用更精確的正則表達式匹配價格
-      var pricePattern = /<[^>]*data-testid="qsp-price"[^>]*>([^<]*)<\/span>/i;
+      var pricePattern = /<fin-streamer[^>]*data-symbol="[^"]*"[^>]*data-field="regularMarketPrice"[^>]*value="([^"]*)"/i;
       var match = html.match(pricePattern);
       
       if (match && match[1]) {
-        return parseFloat(match[1].replace(/[^\d.]/g, '')); // 只保留數字和小數點
+        return parseFloat(match[1]); // 直接使用value屬性中的數值
       } else {
         return "無法抓取價格";
       }
