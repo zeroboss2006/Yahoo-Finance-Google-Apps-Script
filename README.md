@@ -52,6 +52,12 @@ YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表
 <br/>
 
 ## 版本更新
+v1.1 (2025-06-17)<br/>
+- 完整捨棄動態 HTML 解析，改用 Yahoo Finance 的 JSON API (`query2.finance.yahoo.com/v8/finance/chart`)，更穩定無需驗證<br/>
+- 解決原本因 Yahoo 頁面結構變更導致無法抓取的問題<br/>
+- 可正確抓取台股上櫃 ETF（例如 00864B.TWO）的最近收盤價與前一日漲跌幅<br/>
+- 支援輸出收盤價 (price) 與漲跌幅 (changepct)，精確到小數點第二位<br/>
+<br/>
 v1.0.1 (2025-02-27)<br/>
 - 更新了價格抓取的正則表達式，使用 data-testid="qsp-price" 作為精確匹配條件<br/>
 - 優化了價格數據的提取邏輯，確保只保留數字和小數點<br/>
@@ -70,11 +76,15 @@ Yahoo Finance 可能變更網頁結構，如果無法抓取數據，請更新正
 台灣上櫃股票：00864B.TWO<br/>
 美國股票：AAPL<br/>
 指數：^IXIC (NASDAQ)<br/>
+Yahoo Finance JSON API（chart endpoint）較 HTML 抓取方式穩定，建議更新至 v1.1 使用新版資料源
+
 
 # 未來改進方向
 📌 支援更多數據屬性（如開盤價、成交量等）<br/>
 📌 加入其他財經數據來源（如 MoneyDJ、台灣證券交易所等）<br/>
 📌 優化請求速度，減少 API 限制影響<br/>
+📌 提供 JSON 抓取模式與 HTML 模式切換選項<br/>
+📌 支援近五日收盤價快取查詢（避免重複拉取）<br/>
 🔗 GitHub (https://github.com/zeroboss2006/YAHOOFINANCE-Google-Apps-Script/tree/main)<br/>
 
 
