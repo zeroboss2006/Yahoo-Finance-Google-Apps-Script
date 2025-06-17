@@ -1,104 +1,127 @@
-## 目錄
-- [簡介](#簡介)
-- [安裝方式](#安裝方式)
-- [使用範例](#使用範例)
-- [函式說明](#函式說明)
-- [版本更新紀錄](#版本更新紀錄)
-- [注意事項](#注意事項)
-- [未來規劃](#未來規劃)
+# Yahoo Finance Google Apps Script
 
-# 簡介
-由於發現部分台股櫃買資訊無法在 GOOGLEFINANCE 獲取因此想改善此問題<br/>
-<br/>
-YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表使用者從 Yahoo Finance 直接抓取台股、國際股市的即時價格與漲跌幅數據<br/>
-<br/>
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/128548739@N07/54349678688/in/datetaken-public/" title="2025-02-25 13 29 50"><img src="https://live.staticflickr.com/65535/54349678688_77e6554434_o.png" width="541" height="182" alt="2025-02-25 13 29 50"/></a>
-<br/>
-<br/>
-本腳本適用於 Google Sheets，無須額外安裝套件，只需將程式碼貼入 Apps Script 編輯器 即可開始使用<br/>
-<br/>
-# 安裝步驟
-#### 方法 1：手動安裝<br/>
-開啟 Google 試算表<br/>
-點擊 `擴充功能 (Extensions)` → `Apps Script`<br/>
-刪除預設內容，貼上以下完整程式碼：script.gs<br/>
-按下 儲存 (⌘S / Ctrl+S)<br/>
-回到試算表，即可使用 `=YAHOOFINANCE("股票代號", "price")` 來獲取數據<br/>
-#### 方法 2：透過 Google Apps Script API<br/>
-前往 Google Apps Script 網頁版：Google Apps Script<br/>
-建立新專案，然後貼上完整程式碼<br/>
-部署專案，將其綁定至你的 Google 試算表<br/>
-<br/>
-# 如何使用
-在 Google 試算表中，你可以使用以下自訂函數：<br/>
-### 股票與 ETF
-=YAHOOFINANCE("2330.TW","price")   // 台積電收盤價
-=YAHOOFINANCE("00864B.TWO","changepct") // ETF 漲跌幅
+由於發現部分台股櫃買資訊無法在 GOOGLEFINANCE 獲取，因此本專案改用 Yahoo Finance 的 JSON chart endpoint，提升穩定性與兼容性，無需 crumb/cookie 驗證。
 
-<br/>
-# 支援的參數
-| 參數        | 說明                     | 範例                      |
-|-------------|--------------------------|---------------------------|
-| symbol      | Yahoo Finance 的代號     | 2330.TW, 00864B.TWO, AAPL |
-| attribute   | price 或 changepct       | price, changepct          |
+---
 
-<br/>
+## 🧩 功能特色
 
-# 擴增函數
-`YAHOOFINANCE(symbol, attribute)`<br/>
-功能：從 Yahoo Finance 獲取指定股票的即時價格或漲跌幅<br/>
-<br/>
+- **即時收盤價／漲跌幅抓取**：透過自訂函數 `YAHOOFINANCE(symbol, attribute)`，取得  
+  - `price`：最近有效交易日收盤價  
+  - `changepct`：當日漲跌幅百分比，四捨五入到小數兩位  
+- **支援市場多樣化**：包括台股上市（`.TW`）、櫃買 ETF（`.TWO`）、美股／國際市場  
+- **更穩定的 JSON 資料源**：全面改用 Yahoo 的 JSON Endpoint（`query2.finance.yahoo.com/v8/finance/chart`），避免 crumb／cookie 驗證失敗
 
-# 範例
+---
 
-| 參數 | 說明 |
-|-------|-------|
-| `=YAHOOFINANCE("00864B.TWO", "price")` | 獲取 00864B.TWO 的即時價格 |
-| `=YAHOOFINANCE("2330.TW", "changepct")` | 獲取台積電 (2330.TW) 的當日漲跌幅 |
-| `=YAHOOFINANCE("AAPL", "price")` | Apple 股價 |
-| `=YAHOOFINANCE("GOOGL", "changepct")` | Google 當日漲跌幅 (%) |
-<br/>
+## 📦 安裝說明
 
-## 使用方式
-打開 Apps Script 編輯器<br/>
-點擊 執行 (Run)<br/>
-會將價格與漲跌幅寫入 A1 和 B1 儲存格<br/>
-<br/>
+### 方法一：手動安裝
+1. 開啟 Google 試算表，點選 **擴充功能 → Apps Script**  
+2. 刪除預設內容，貼上 `YAHOOFINANCE.gs` 中完整程式碼  
+3. 儲存後返回試算表，即可使用自訂函式
 
-## 版本更新
-v1.1 (2025-06-17)<br/>
-- 完整捨棄動態 HTML 解析，改用 Yahoo Finance 的 JSON API (`query2.finance.yahoo.com/v8/finance/chart`)，更穩定無需驗證<br/>
-- 解決原本因 Yahoo 頁面結構變更導致無法抓取的問題<br/>
-- 可正確抓取台股上櫃 ETF（例如 00864B.TWO）的最近收盤價與前一日漲跌幅<br/>
-- 支援輸出收盤價 (price) 與漲跌幅 (changepct)，精確到小數點第二位<br/>
-<br/>
-v1.0.1 (2025-02-27)<br/>
-- 更新了價格抓取的正則表達式，使用 data-testid="qsp-price" 作為精確匹配條件<br/>
-- 優化了價格數據的提取邏輯，確保只保留數字和小數點<br/>
-- 提供了更清晰的錯誤提示信息<br/>
-<br/>
-v1.0 (2025-02-24)<br/>
-- 修正 changepct 漲跌幅數據錯誤，確保匹配 Yahoo Finance<br/>
-- 提供更準確的正則表達式以解析市價與漲跌幅<br/>
-- 加入錯誤處理機制，避免因為網路問題導致函數崩潰<br/>
+### 方法二：函式庫部署
+1. 前往 [Google Apps Script](https://script.google.com)  
+2. 建立專案並貼上 `YAHOOFINANCE.gs`，儲存後部署成函式庫  
+3. 在其他試算表中透過函式庫 ID 引入使用
 
-# 注意事項
-Yahoo Finance 可能變更網頁結構，如果無法抓取數據，請更新正則表達式<br/>
-每個 Google 試算表 API 呼叫數量有限，請避免過於頻繁地請求<br/>
-部分股票可能需要不同代號，例如：<br/>
-台灣上市股票：2330.TW (台積電)<br/>
-台灣上櫃股票：00864B.TWO<br/>
-美國股票：AAPL<br/>
-指數：^IXIC (NASDAQ)<br/>
-Yahoo Finance JSON API（chart endpoint）較 HTML 抓取方式穩定，建議更新至 v1.1 使用新版資料源
+---
 
+## ══ 使用範例 ══
 
-# 未來改進方向
-📌 支援更多數據屬性（如開盤價、成交量等）<br/>
-📌 加入其他財經數據來源（如 MoneyDJ、台灣證券交易所等）<br/>
-📌 優化請求速度，減少 API 限制影響<br/>
-📌 提供 JSON 抓取模式與 HTML 模式切換選項<br/>
-📌 支援近五日收盤價快取查詢（避免重複拉取）<br/>
-🔗 GitHub (https://github.com/zeroboss2006/YAHOOFINANCE-Google-Apps-Script/tree/main)<br/>
+| 函數範例                                | 說明 |
+|-----------------------------------------|------|
+| `=YAHOOFINANCE("00864B.TWO","price")`    | 取得 OTC ETF 00864B 收盤價，如 43.43 |
+| `=YAHOOFINANCE("00864B.TWO","changepct")`| 取得當日漲跌幅，如 +0.07% |
+| `=YAHOOFINANCE("2330.TW","price")`       | 台積電當日收盤價 |
+| `=YAHOOFINANCE("AAPL","changepct")`      | Apple 當日漲跌幅 |
 
+---
 
+## 🔍 參數說明
+
+| 參數       | 說明                                   | 範例                         |
+|------------|----------------------------------------|------------------------------|
+| `symbol`   | Yahoo Finance 的識別代號              | `2330.TW`, `00864B.TWO`, `AAPL` |
+| `attribute`| `price`（收盤價）或 `changepct`（漲跌幅％）| `"price"`、`"changepct"`     |
+
+---
+
+## 💾 程式碼檔案：`YAHOOFINANCE.gs`
+
+請將以下程式碼貼入你的 Apps Script 專案中，並另存為 `YAHOOFINANCE.gs`：
+
+```javascript
+/**
+ * 從 Yahoo JSON chart API 抓取最近收盤價與漲跌幅
+ * @param {string} symbol - 例如 "00864B.TWO"
+ * @param {string} attribute - "price" 或 "changepct"
+ * @customfunction
+ */
+function YAHOOFINANCE(symbol, attribute) {
+  if (!symbol || !attribute) return "請提供 symbol 與 attribute";
+  var now = Math.floor(Date.now()/1000);
+  var tenDaysAgo = now - 10*24*60*60;
+  var url = 'https://query2.finance.yahoo.com/v8/finance/chart/' +
+            encodeURIComponent(symbol) +
+            '?period1=' + tenDaysAgo +
+            '&period2=' + now +
+            '&interval=1d&events=history';
+  try {
+    var res = UrlFetchApp.fetch(url, {
+      muteHttpExceptions: true,
+      headers: { "User-Agent": "Mozilla/5.0" }
+    }).getContentText();
+    var result = JSON.parse(res).chart.result;
+    if (!result || result.length === 0) return "";
+    var closes = result[0].indicators.quote[0].close;
+    var valid = closes.filter(v => v !== null);
+    if (valid.length === 0) return "";
+    var today = valid[valid.length -1];
+    var prev = valid.length > 1 ? valid[valid.length-2] : today;
+    if (attribute.toLowerCase() === "price") return today;
+    if (attribute.toLowerCase() === "changepct") {
+      if (prev === 0) return 0;
+      return Math.round((today - prev) / prev * 10000) / 100;
+    }
+    return "屬性請填 price 或 changepct";
+  } catch (e) {
+    return "抓取失敗：" + e.message;
+  }
+}
+```
+## 📝 版本歷程
+v1.1 (2025‑06‑17)
+
+改用 JSON Endpoint (v8/chart)，穩定解析收盤價與當日漲跌幅
+
+支援 OTC ETF、台股與國際股票，精準輸出至小數點後兩位
+
+v1.0.1 (2025‑02‑27)
+
+更新 HTML Regex 與錯誤處理機制
+
+v1.0 (2025‑02‑24)
+
+初版實作 price 與 changepct 功能
+
+## ⚠️ 注意事項
+JSON Endpoint 穩定，不需 crumb／cookie 驗證
+
+回傳空值可能代表：非交易日、symbol 無效或當日未成交
+
+建議避免過於頻繁呼叫，以免觸發 API 限制
+
+## 🚀 未來開發方向
+支援更多屬性 (開盤、高低、成交量)
+
+批次查詢多標的
+
+trigger 自動更新 & 儲存歷史資料
+
+提供 JSON／HTML 模式切換選項
+
+## 💡 歡迎透過 issue 或 PR 一起優化這個金融試算表工具！🚀
+完成後就能在 GitHub 顯示完整檔案，並供他人下載。如果你想要我幫你逐步操作（例如 Fork → 編輯 → PR），也可以告訴我！
+::contentReference[oaicite:0]{index=0}
