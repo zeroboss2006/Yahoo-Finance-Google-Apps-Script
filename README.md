@@ -121,7 +121,3 @@ JSON Endpoint 穩定，不需 crumb／cookie 驗證
 trigger 自動更新 & 儲存歷史資料
 
 提供 JSON／HTML 模式切換選項
-
-## 💡 歡迎透過 issue 或 PR 一起優化這個金融試算表工具！🚀
-完成後就能在 GitHub 顯示完整檔案，並供他人下載。如果你想要我幫你逐步操作（例如 Fork → 編輯 → PR），也可以告訴我！
-::contentReference[oaicite:0]{index=0}
