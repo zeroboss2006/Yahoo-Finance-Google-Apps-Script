@@ -37,10 +37,11 @@ YAHOOFINANCE 是一個 Google Apps Script 自訂函數，允許 Google 試算表
 
 <br/>
 # 支援的參數
-| 參數 | 說明 | 範例 |
-|-------|-------|-------|
-| `symbol` | Yahoo Finance 股票代號 | `"2330.TW"` `"AAPL"` |
-| `attribute` | `price`取得現價<br/> `changepct`取得當日漲跌幅 | `"changepct"` `"price"` |
+| 參數        | 說明                     | 範例                      |
+|-------------|--------------------------|---------------------------|
+| symbol      | Yahoo Finance 的代號     | 2330.TW, 00864B.TWO, AAPL |
+| attribute   | price 或 changepct       | price, changepct          |
+
 <br/>
 
 # 擴增函數
